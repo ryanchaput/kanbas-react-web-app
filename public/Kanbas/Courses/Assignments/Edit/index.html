@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <body>
-        <form action="/Kanbas/Courses/Assignments/screen.html">
-            <select>
-                <option value="EDIT">Edit</option>
-                <option value="SPEEDGRADER" selected>Speed Grader</option>
-                <option value="DUPLICATE">Duplicate</option>
-                <option value="DELETE">Delete</option>
-                <option value="MOVE">Move To...</option>
-                <option value="SEND">Send To...</option>
-                <option value="COPY">Copy To...</option>
-                <option value="SHARE">Share To Commons</option>
-            </select>
 
-            <h2>Assignment Name</h2>
+<body>
+    <form action="/Kanbas/Courses/Assignments/screen.html">
+        <select>
+            <option value="EDIT">Edit</option>
+            <option value="SPEEDGRADER" selected>Speed Grader</option>
+            <option value="DUPLICATE">Duplicate</option>
+            <option value="DELETE">Delete</option>
+            <option value="MOVE">Move To...</option>
+            <option value="SEND">Send To...</option>
+            <option value="COPY">Copy To...</option>
+            <option value="SHARE">Share To Commons</option>
+        </select>
 
-            <input type="text" placeholder="Assignment Name">
-            <p>
+        <h2>Assignment Name</h2>
 
-            <input type="text" placeholder="Assignment Description">
-            <p>
+        <input type="text" value="Assignment Name">
+        <p>
+
+            <input type="text" value="Assignment Description">
+        <p>
 
             <label>Points</label>
             </br>
             <input type="text" placeholder="Points Possible">
-            </p>
-            <p>
+        </p>
+        <p>
             <label>Assignment Group</label>
             </br>
             <select>
                 <option value="ASSIGNMENTS">ASSIGNMENTS</option>
             </select>
-            </p>
-            
-            <p>
+        </p>
+
+        <p>
             <label>Display Grade as:</label>
             </br>
             <select>
                 <option value="PERCENTAGE">Percentage</option>
                 <option value="NUMBER">Number</option>
             </select>
-            </p>
-            <p>
+        </p>
+        <p>
 
-            
+
             <label>Submission Type:</label>
             </br>
             <select>
@@ -51,37 +52,38 @@
                 <option value="ONPAPER">On Paper</option>
                 <option value="NONE">None</option>
             </select>
-            </p>
+        </p>
 
-            <p>
+        <p>
             <label>Online Entry Options</label>
             </br>
-            <label><input type="checkbox" value="TEXTENTRY" name="check-entry">Text Entry</label><br/>
-            <label><input type="checkbox" value="URL" name="check-entry">Website URL</label><br/>
-            <label><input type="checkbox" value="RECORDINGS" name="check-entry">Media Recordings</label><br/>
-            <label><input type="checkbox" value="ANNOTATION" name="check-entry">Student Annotation</label><br/>
+            <label><input type="checkbox" value="TEXTENTRY" name="check-entry">Text Entry</label><br />
+            <label><input type="checkbox" value="URL" name="check-entry">Website URL</label><br />
+            <label><input type="checkbox" value="RECORDINGS" name="check-entry">Media Recordings</label><br />
+            <label><input type="checkbox" value="ANNOTATION" name="check-entry">Student Annotation</label><br />
             <label><input type="checkbox" value="FILE" name="check-entry">File Uploads</label>
-            </p>
+        </p>
 
-            <p>
-                Assign<br/>
-                <label>Assign to</label><br/>
-                <input type="text" placeholder="Assignment group"><br/><br/>
+        <p>
+            Assign<br />
+            <label>Assign to</label><br />
+            <input type="text" value="Assignment group"><br /><br />
 
-                <label>Due</label><br/>
-                <input type="date"><br/><br/>
+            <label>Due</label><br />
+            <input type="date" value="2024-01-01"><br /><br />
 
-                <label>Available from</label><br/>
-                <input type="date"><br/><br/>
+            <label>Available from</label><br />
+            <input type="date" value="2024-01-01"><br /><br />
 
-                <label>Until</label><br/>
-                <input type="date">
-            </p>
+            <label>Until</label><br />
+            <input type="date" value="2024-01-01">
+        </p>
 
-        
-            <button type="submit" value="CANCEL">Cancel</button>
-            <button type="submit" value="SUBMIT">Save</button>
-        </form>
 
-    </body>
+        <button type="submit" value="CANCEL">Cancel</button>
+        <button type="submit" value="SUBMIT">Save</button>
+    </form>
+
+</body>
+
 </html>
