@@ -1,99 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head></head>
-    <body>
-        <table>
-            <tr>
-                <td valign="top">
-                    <ul>
-                        <li>
-                            <a href="/Kanbas/Account/Profile/screen.html">Account</a></li>
-                        <li>
-                            <a href="#">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="/Kanbas/Courses/Home/screen.html">Courses</a>
-                        </li>
-                        <li>
-                            <a href="#">Calendar</a>
-                        </li>
-                        <li>
-                            <a href="#">Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#">History</a>
-                        </li>
-                        <li>
-                            <a href="#">Studio</a>
-                        </li>
-                        <li>
-                            <a href="#">Commons</a>
-                        </li>
-                        <li>
-                            <a href="#">Help</a>
-                        </li>
-                    </ul>
-                </td>
-                <td valign="top">
-                    <ul>
-                        <li>
-                            <a href="#">Notifications</a>
-                        </li>
-                        <li>
-                            <a href="/Kanbas/Account/Profile/screen.html">Profile</a>
-                        </li>
-                        <li>
-                            <a href="#">Files</a>
-                        </li>
-                        <li>
-                            <a href="#">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#">ePortfolios</a>
-                        </li>
-                        <li>
-                            <a href="#">Shared Content</a>
-                        </li>
-                        <li>
-                            <a href="#">The Hub</a>
-                        </li>
-                        <li>
-                            <a href="#">Qwickly Course Tools</a>
-                        </li>
-                        <li>
-                            <a href="#">Global Announcements</a>
-                        </li>
-                    </ul>
-                </td>
-                <td>
-                    Jose Annunziato's Profile<br/>
 
-                    <table>
-                        <tr>
-                            <td>
-                                <h3>Jose Annunziato</h3>
-                                <p>
-                                    <h4>Contact</h4>
-                                    No registered services, you can add some on the <a href="#">Settings</a> page
-                                </p>
-                                <p>
-                                    <h4>Biography</h4>
-                                    Faculty Software Engineer, AI, Space, and renewables enthusiast
-                                </p>
-                                <p>
-                                    <h4>Links</h4>
-                                    <a href="#">Youtube</a>
-                                </p>
-                            </td>
-                            <td valign="top">
-                                <form action="/Kanbas/Account/Profile/Edit/screen.html">
-                                    <button type="submit">Edit Profile</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </body>
+<head>
+    <link rel="stylesheet" href="/Kanbas/styles.css" />
+    <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/d4dd19a64d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td valign="top">
+                <ul class="wd-kanbas-navigation">
+                    <li><a href="http://northeastern.edu"><img src="/images/northeastern.jpg"
+                                style="max-width: 65px; height: auto"></a></li>
+                    <li class="wd-active">
+                        <a href="/Kanbas/Account/Profile/screen.html"><i class="fa fa-user"
+                                style="color: gray;"></i>Account</a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Dashboard/screen.html">
+                            <i class="fa fa-tachometer"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Courses/Home/screen.html">
+                            <i class="fa fa-book"></i>Courses</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar"></i>Calendar</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-inbox"></i><br>Inbox</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-clock-o"></i>History</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-desktop"></i>Studio</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-share"></i>Commons</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-question"></i><br>Help</a>
+                    </li>
+                </ul>
+            </td>
+            <td valign="top">
+                <ul>
+                    <li>
+                        <a href="#">Notifications</a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Account/Profile/screen.html">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Files</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#">ePortfolios</a>
+                    </li>
+                    <li>
+                        <a href="#">Shared Content</a>
+                    </li>
+                    <li>
+                        <a href="#">The Hub</a>
+                    </li>
+                    <li>
+                        <a href="#">Qwickly Course Tools</a>
+                    </li>
+                    <li>
+                        <a href="#">Global Announcements</a>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                Jose Annunziato's Profile<br />
+
+                <table>
+                    <tr>
+                        <td>
+                            <h3>Jose Annunziato</h3>
+                            <p>
+                            <h4>Contact</h4>
+                            No registered services, you can add some on the <a href="#">Settings</a> page
+                            </p>
+                            <p>
+                            <h4>Biography</h4>
+                            Faculty Software Engineer, AI, Space, and renewables enthusiast
+                            </p>
+                            <p>
+                            <h4>Links</h4>
+                            <a href="#">Youtube</a>
+                            </p>
+                        </td>
+                        <td valign="top">
+                            <form action="/Kanbas/Account/Profile/Edit/screen.html">
+                                <button type="submit">Edit Profile</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
 </html>
