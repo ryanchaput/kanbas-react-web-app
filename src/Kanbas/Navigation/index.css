@@ -19,6 +19,7 @@
 
 .wd-kanbas-navigation li.wd-active a {
     color: red;
+    margin-bottom: 5px;
 }
 
 .wd-kanbas-navigation a {
@@ -26,8 +27,7 @@
     text-decoration: none;
 }
 
-.wd-kanbas-navigation a i {
+.wd-kanbas-navigation a .fs-2 {
     color: red;
-    font-size: 2em;
     margin-bottom: 5px;
 }
