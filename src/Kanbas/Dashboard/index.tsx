@@ -5,7 +5,7 @@ function Dashboard() {
     return (
         <div>
             <h1>Dashboard</h1>
-            <h2>Published Courses (7)</h2>
+            <h2>Published Courses (3)</h2>
             <div className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
                     {courses.map((course) => (
