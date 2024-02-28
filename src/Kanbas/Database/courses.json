@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "ENV201",
+        "name": "Sustainability",
+        "number": "ENV2100",
+        "stateDate": "2024-01-08",
+        "endDate": "2024-04-24",
+        "image": "images/pipeline.jpg"
+    },
+    {
+        "_id": "CS401",
+        "name": "Artificial Intelligence",
+        "number": "CS4100",
+        "stateDate": "2024-01-08",
+        "endDate": "2024-04-24",
+        "image": "images/compsci.jpg"
+    },
+    {
+        "_id": "MUSC101",
+        "name": "Guitar",
+        "number": "MUSC1500",
+        "stateDate": "2024-01-08",
+        "endDate": "2024-04-24",
+        "image": "images/guitar.jpg"
+    }
+]
