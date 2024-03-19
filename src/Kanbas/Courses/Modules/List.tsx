@@ -23,7 +23,7 @@ function ModuleList() {
                     <button className="btn btn-success" onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
                         Add
                     </button>
-                    <button className="btn btn-secondary" onClick={() => dispatch(updateModule(module))}>
+                    <button className="btn btn-info" onClick={() => dispatch(updateModule(module))}>
                         Update
                     </button>
                     <form>
