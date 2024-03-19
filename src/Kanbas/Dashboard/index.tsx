@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import * as db from "../Database";
 function Dashboard(
     {
         courses, course, setCourse, addNewCourse, deleteCourse, updateCourse
@@ -13,21 +11,6 @@ function Dashboard(
     return (
         <div>
             <h1>Dashboard</h1>
-            <h5>Course</h5>
-            <input value={course.name} className="form-control"
-                onChange={(e) => setCourse({ ...course, name: e.target.value })} />
-            <input value={course.number} className="form-control"
-                onChange={(e) => setCourse({ ...course, number: e.target.value })} />
-            <input value={course.startDate} className="form-control" type="date"
-                onChange={(e) => setCourse({ ...course, startDate: e.target.value })} />
-            <input value={course.endDate} className="form-control" type="date"
-                onChange={(e) => setCourse({ ...course, endDate: e.target.value })} />
-            <button onClick={addNewCourse} >
-                Add
-            </button>
-            <button onClick={updateCourse} >
-                Update
-            </button>
             <h2>Published Courses (3)</h2>
             <div className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
@@ -38,13 +21,13 @@ function Dashboard(
                                 <div className="card-body">
                                     <Link className="card-title"
                                         to={`/Kanbas/Courses/${course._id}/Home`} style={{ textDecoration: "none", color: "navy", fontWeight: "bold" }}>{course.name}
-                                        <button onClick={(event) => {
+                                        <button className="btn btn-warning" onClick={(event) => {
                                             event.preventDefault();
                                             setCourse(course);
                                         }}>
                                             Edit
                                         </button>
-                                        <button onClick={(event) => {
+                                        <button className="btn btn-danger" onClick={(event) => {
                                             event.preventDefault();
                                             deleteCourse(course._id);
                                         }}>
@@ -59,6 +42,29 @@ function Dashboard(
                     ))}
                 </div>
             </div>
+            <h5>Add or Edit a Course</h5>
+            <input value={course.name} className="form-control"
+                onChange={(e) => setCourse({ ...course, name: e.target.value })} >
+                Course Name
+            </input>
+            <input value={course.number} className="form-control"
+                onChange={(e) => setCourse({ ...course, number: e.target.value })} >
+                Course Number
+            </input>
+            <input value={course.startDate} className="form-control" type="date"
+                onChange={(e) => setCourse({ ...course, startDate: e.target.value })} >
+                Start Date
+            </input>
+            <input value={course.endDate} className="form-control" type="date"
+                onChange={(e) => setCourse({ ...course, endDate: e.target.value })} >
+                End Date
+            </input>
+            <button onClick={addNewCourse} className="btn btn-success" >
+                Add
+            </button>
+            <button onClick={updateCourse} className="btn btn-secondary" >
+                Update
+            </button>
         </div>
     );
 }

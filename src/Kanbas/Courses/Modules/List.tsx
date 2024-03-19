@@ -20,18 +20,18 @@ function ModuleList() {
             {/* <!-- Add buttons here --> */}
             <ul className="list-group wd-modules">
                 <li className="list-group-item">
-                    <button onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
+                    <button className="btn btn-success" onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
                         Add
                     </button>
-                    <button onClick={() => dispatch(updateModule(module))}>
+                    <button className="btn btn-secondary" onClick={() => dispatch(updateModule(module))}>
                         Update
                     </button>
-                    <input value={module.name}
+                    <input className="form-control" value={module.name}
                         onChange={(e) =>
                             dispatch(setModule({
                                 ...module, name: e.target.value
                             }))} />
-                    <textarea value={module.description}
+                    <textarea className="form-control" value={module.description}
                         onChange={(e) => dispatch(setModule({
                             ...module, description: e.target.value
                         }))} />
@@ -41,10 +41,10 @@ function ModuleList() {
                     .map((module, index) => (
                         <li key={index}
                             className="list-group-item">
-                            <button onClick={(event) => { dispatch(setModule(module)) }}>
+                            <button className="btn btn-warning" onClick={(event) => { dispatch(setModule(module)) }}>
                                 Edit
                             </button>
-                            <button onClick={() => dispatch(deleteModule(module._id))} >
+                            <button className="btn btn-danger" onClick={() => dispatch(deleteModule(module._id))} >
                                 Delete
                             </button>
                             <div>
