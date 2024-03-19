@@ -13,21 +13,14 @@ function Dashboard(
             <h1>Dashboard</h1>
             <h5>Add or Edit a Course</h5>
             <input value={course.name} className="form-control"
-                onChange={(e) => setCourse({ ...course, name: e.target.value })} >
-                Course Name
-            </input>
+                placeholder="Course Name" onChange={(e) => setCourse({ ...course, name: e.target.value })} />
             <input value={course.number} className="form-control"
-                onChange={(e) => setCourse({ ...course, number: e.target.value })} >
-                Course Number
-            </input>
+                placeholder="Course Number" onChange={(e) => setCourse({ ...course, number: e.target.value })} />
             <input value={course.startDate} className="form-control" type="date"
-                onChange={(e) => setCourse({ ...course, startDate: e.target.value })} >
-                Start Date
-            </input>
+                onChange={(e) => setCourse({ ...course, startDate: e.target.value })} />
             <input value={course.endDate} className="form-control" type="date"
-                onChange={(e) => setCourse({ ...course, endDate: e.target.value })} >
-                End Date
-            </input>
+                onChange={(e) => setCourse({ ...course, endDate: e.target.value })} />
+
             <button onClick={addNewCourse} >
                 Add
             </button>
