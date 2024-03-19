@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-//import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
     addModule,
@@ -60,20 +58,6 @@ function ModuleList() {
                                     <FaEllipsisV className="ms-2" />
                                 </span>
                             </div>
-                            {/*selectedModule._id === module._id && (
-                            <ul className="list-group">
-                                {module.lessons?.map((lesson, index) => (
-                                    <li className="list-group-item" key={index}>
-                                        <FaEllipsisV className="me-2" />
-                                        {lesson.name}
-                                        <span className="float-end">
-                                            <FaCheckCircle className="text-success" />
-                                            <FaEllipsisV className="ms-2" />
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                                )*/}
                         </li>
                     ))}
             </ul>
