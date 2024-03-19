@@ -26,15 +26,19 @@ function ModuleList() {
                     <button className="btn btn-secondary" onClick={() => dispatch(updateModule(module))}>
                         Update
                     </button>
-                    <input className="form-control" value={module.name}
-                        onChange={(e) =>
-                            dispatch(setModule({
-                                ...module, name: e.target.value
-                            }))} />
-                    <textarea className="form-control" value={module.description}
-                        onChange={(e) => dispatch(setModule({
-                            ...module, description: e.target.value
-                        }))} />
+                    <form>
+                        <div className="form-group">
+                            <input className="form-control" value={module.name}
+                                onChange={(e) =>
+                                    dispatch(setModule({
+                                        ...module, name: e.target.value
+                                    }))} />
+                            <textarea className="form-control" value={module.description}
+                                onChange={(e) => dispatch(setModule({
+                                    ...module, description: e.target.value
+                                }))} />
+                        </div>
+                    </form>
                 </li>
                 {moduleList
                     .filter((module) => module.course === courseId)
