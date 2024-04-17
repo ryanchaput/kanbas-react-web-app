@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as client from "./client";
-import { User } from "./client";
 
 export default function Signup() {
     const [error, setError] = useState("");
@@ -10,7 +9,7 @@ export default function Signup() {
     const signup = async () => {
         try {
             await client.signup(user);
-            navigate("Kanbas/Account/Profile");
+            navigate("/Kanbas/Account/Profile");
         } catch (error) {
             let message;
             if (error instanceof Error) message = error.message;
@@ -20,7 +19,7 @@ export default function Signup() {
     };
     return (
         <div>
-            <h1>Signup</h1>
+            <h1>Sign Up for Kanbas!</h1>
             {error && <div>{error}</div>}
             <input value={user.username} onChange={(e) => setUser({
                 ...user, username: e.target.value })} />

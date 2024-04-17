@@ -1,5 +1,6 @@
 import Signin from "../../Users/Signin";
 import Profile from "../../Users/Profile";
+import Signup from "../../Users/Signup";
 import UserTable from "../../Users/Table";
 import { Routes, Route, Navigate } from "react-router-dom";
 export default function Account() {
@@ -9,6 +10,7 @@ export default function Account() {
                 <Route path="/" element={<Navigate to="/Kanbas/Account/Signin" />} />
                 <Route path="/Signin" element={<Signin />} />
                 <Route path="/Profile" element={<Profile />} />
+                <Route path="/Signup" element={<Signup />} />
                 <Route path="/Admin/Users" element={<UserTable />} />
             </Routes>
         </div>

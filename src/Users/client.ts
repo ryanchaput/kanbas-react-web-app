@@ -1,6 +1,13 @@
 import axios from 'axios';
 export const BASE_API = process.env.REACT_APP_API_BASE;
 export const USERS_API = `${BASE_API}/api/users`;
+
+axios.defaults.withCredentials = true;
+
+const api = axios.create({
+    withCredentials: true,
+})
+
 export interface User {
     _id: string;
     username: string; password: string; role: string;
@@ -34,8 +41,8 @@ export const deleteUser = async (user: any) => {
     return response.data;
 };
 export const signup = async (user: any) => {
-    const response = await axios.post(`${USERS_API}/signup`, user);
-    return response.data;
+    api.post(`${USERS_API}/signup`, user)
+        .then((response) => response.data);
 };
 export const signout = async () => {
     const response = await axios.post(`${USERS_API}/signout`);

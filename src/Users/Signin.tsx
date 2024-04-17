@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { User } from './client';
 import * as client from './client';
 export default function Signin() {
@@ -22,10 +22,10 @@ export default function Signin() {
                 <div className="form-group">
                     <label htmlFor="password-input">Password</label>
                     <input className="form-control" id="password-input" value={credentials.password} onChange={(e) => setCredentials({ ...credentials, password: e.target.value })} />
-                    <input className="form-control" id="password-input" value={credentials.password} onChange={(e) => setCredentials({ ...credentials, password: e.target.value })} />
                 </div>
                 <button className="btn btn-primary" onClick={signin}> Sign In</button>
             </form>
+            <Link to="/Kanbas/Account/Signup">Sign Up</Link>
         </div>
     )
 }

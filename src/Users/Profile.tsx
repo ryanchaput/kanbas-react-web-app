@@ -31,14 +31,7 @@ export default function Profile() {
                         setProfile({ ...profile, username: e.target.value })} />
                     <input value={profile.password} onChange={(e) =>
                         setProfile({ ...profile, password: e.target.value })} />
-                    <input value={profile.firstName} onChange={(e) =>
-                        setProfile({ ...profile, firstName: e.target.value })} />
-                    <input value={profile.lastName} onChange={(e) =>
-                        setProfile({ ...profile, lastName: e.target.value })} />
-                    <input type="date" value={profile.dob.toString()} onChange={(e) =>
-                        setProfile({ ...profile, dob: new Date(e.target.value) })} />
-                    <input value={profile.email} onChange={(e) =>
-                        setProfile({ ...profile, email: e.target.value })} />
+                    
                     <select onChange={(e) =>
                         setProfile({ ...profile, role: e.target.value })}>
                         <option value="USER">User</option>
@@ -57,3 +50,13 @@ export default function Profile() {
         </div>
     );
 }
+/*
+<input value={profile.firstName} onChange={(e) =>
+                        setProfile({ ...profile, firstName: e.target.value })} />
+                    <input value={profile.lastName} onChange={(e) =>
+                        setProfile({ ...profile, lastName: e.target.value })} />
+                    <input type="date" value={profile.dob.toString()} onChange={(e) =>
+                        setProfile({ ...profile, dob: new Date(e.target.value) })} />
+                    <input value={profile.email} onChange={(e) =>
+                        setProfile({ ...profile, email: e.target.value })} />
+*/
