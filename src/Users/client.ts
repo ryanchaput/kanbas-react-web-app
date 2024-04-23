@@ -27,7 +27,7 @@ export const updateUser = async (user: any) => {
     return response.data;
 };
 
-export const findALlUsers = async () => {
+export const findAllUsers = async () => {
     const response = await axios.get(`${USERS_API}`);
     return response.data;
 };

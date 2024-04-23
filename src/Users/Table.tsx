@@ -27,7 +27,7 @@ export default function UserTable() {
         }
     };
     const fetchUsers = async () => {
-        const users = await client.findALlUsers();
+        const users = await client.findAllUsers();
         setUsers(users);
     };
     useEffect(() => { fetchUsers(); }, []);

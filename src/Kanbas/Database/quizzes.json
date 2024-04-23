@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "A101",
+        "title": "Sustainability Reflection Quiz",
+        "course": "ENV201"
+    },
+    {
+        "_id": "A102",
+        "title": "Ethics of Fracking",
+        "course": "ENV201"
+    },
+    {
+        "_id": "A103",
+        "title": "Global Warming Report",
+        "course": "ENV201"
+    }
+]
