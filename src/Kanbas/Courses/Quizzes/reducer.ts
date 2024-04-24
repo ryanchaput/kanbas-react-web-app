@@ -9,8 +9,15 @@ type Quiz = {
 const initialState = {
     quizzes: [] as Quiz[],
     quiz: {
-        name: "New quiz 123",
+        name: "New Quiz",
         description: "New Description",
+        type: "Graded Quiz",
+        questions: [],
+        published: false,
+        time: 20,
+        due: new Date().toLocaleDateString(),
+        available: new Date().toLocaleDateString(),
+        until: new Date().toLocaleDateString(),
     },
 };
 

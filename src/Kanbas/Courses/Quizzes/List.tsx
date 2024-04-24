@@ -16,7 +16,7 @@ import {
     FaTimesCircle,
     FaBook,
 } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { findQuizzesForCourse, createQuiz } from "./client";
 
 function QuizList() {
@@ -24,6 +24,7 @@ function QuizList() {
     const quizList = useSelector((state: KanbasState) => state.quizzesReducer.quizzes);
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleDeleteQuiz = (quizId: string) => {
         client.deleteQuiz(quizId).then((status) => {
             dispatch(deleteQuiz(quizId));
@@ -32,12 +33,15 @@ function QuizList() {
     const handleAddQuiz = () => {
         createQuiz(courseId, quiz)
             .then((quiz) => {
-                dispatch(addQuiz(quiz))
+                dispatch(addQuiz(quiz));
+                navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`);
             });
     };
-    const handleUpdateQuiz = async () => {
-        const status = await client.updateQuiz(quiz);
-        dispatch(updateQuiz(quiz));
+    const handleUpdateQuiz = (quiz: any) => {
+        client.updateQuiz(quiz)
+        .then((status) => {
+            dispatch(updateQuiz(quiz))
+        });
     };
     useEffect(() => {
         findQuizzesForCourse(courseId)
@@ -71,7 +75,7 @@ function QuizList() {
                                     <strong>{quiz.name}</strong>
                                 </Link>
                                 <span className="float-end">
-                                    <button className="btn btn-light" onClick={() => dispatch(updateQuiz({ ...quiz, published: !quiz.published }))} >
+                                    <button className="btn btn-light" onClick={() => handleUpdateQuiz({ ...quiz, published: !quiz.published })} >
                                         {quiz.published ? <FaCheckCircle className="text-success" /> : <FaTimesCircle />}
                                     </button>
                                     <button className="btn btn-light" onClick={handleToggleMenu}>

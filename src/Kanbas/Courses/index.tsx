@@ -7,6 +7,8 @@ import Assignments from "./Assignments";
 import Quizzes from "./Quizzes";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import QuizDetails from "./Quizzes/Details";
+import QuizEdit from "./Quizzes/Details/Edit";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -39,7 +41,8 @@ function Courses() {
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
-                        <Route path="Quizzes/:quizId" element={<h1>Quiz Editor</h1>} />
+                        <Route path="Quizzes/:quizId" element={<QuizDetails />} />
+                        <Route path="Quizzes/Edit/:quizId" element={<QuizEdit />} />
                         <Route path="Grades" element={<h1>Grades</h1>} />
                     </Routes>
                 </div>
