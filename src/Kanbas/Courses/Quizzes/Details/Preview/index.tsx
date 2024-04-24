@@ -24,7 +24,7 @@ function PreviewQuiz() {
                 Edit this Quiz
             </button>
             <p>Started: {new Date().toLocaleString()}</p>
-            <p><strong>Instructions:</strong> {quiz.description}</p>
+            <h4><strong>Instructions:</strong> {quiz.description}</h4>
 
             {/* Question display goes here */}
             
@@ -33,14 +33,24 @@ function PreviewQuiz() {
                     <li key={index} className="list-group-item">
                         <div className="card">
                             <div className="card-header">
-                                <h3>Question {index + 1}</h3>
+                                <h4>Question {index + 1}</h4>
                             </div>
                             <div className="card-body">
                                 <h5>{question.question}</h5>
                                 <ul className="list-group list-group-flush">
                                     {question.answers.map((answer: any, index: number) => (
                                         <li key={index} className="list-group-item">
-                                            {answer.correct ? <strong>{answer.answer}</strong> : answer.answer}
+                                            { (question.type !== "Fill in the Blank") &&
+                                            <>
+                                                {answer.answer}
+                                                <input type="radio" name={question._id} />
+                                            </>
+                                            }
+                                            { (question.type === "Fill in the Blank") &&
+                                            <>
+                                                <input type="text" />
+                                            </>
+                                            }
                                         </li>
                                     ))}
                                 </ul>
@@ -54,14 +64,10 @@ function PreviewQuiz() {
             
             <h4>Questions</h4>
             <ul className="list-group list-group-flush">
-                <li>
-                    <FaQuestionCircle />
-                    Question 1
-                </li>
                 {quiz.questions && quiz.questions.map((question: any, index: number) => (
                     <li key={index} className="list-group-item">
                         <FaQuestionCircle />
-                        <strong>Question {index}</strong>
+                        <strong>Question {index + 1}</strong>
                     </li>
                 ))}
             </ul>
