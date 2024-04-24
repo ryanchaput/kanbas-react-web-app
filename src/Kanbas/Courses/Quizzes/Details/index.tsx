@@ -33,7 +33,7 @@ function QuizDetails() {
                 <button className="btn btn-primary" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/Edit/${quiz._id}`)}>
                     Edit
                 </button>
-                <button className= "btn btn-outline-dark">
+                <button className= "btn btn-outline-dark" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/Preview/${quiz._id}`)}>
                     Preview
                 </button>
             </span>

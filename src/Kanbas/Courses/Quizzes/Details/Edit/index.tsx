@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as client from '../../client';
 import { updateQuiz } from '../../reducer';
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 function QuizEdit() {
     const { courseId, quizId } = useParams();
