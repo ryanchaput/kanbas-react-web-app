@@ -32,8 +32,9 @@ function PreviewQuiz() {
                 {quiz.questions && quiz.questions.map((question: any, index: number) => (
                     <li key={index} className="list-group-item">
                         <div className="card">
-                            <div className="card-header">
+                            <div className="card-header d-flex justify-content-between">
                                 <h4>Question {index + 1}</h4>
+                                {question.points} pts
                             </div>
                             <div className="card-body">
                                 <h5>{question.question}</h5>

@@ -5,6 +5,7 @@ import * as client from '../../client';
 import { updateQuiz } from '../../reducer';
 import { nanoid } from '@reduxjs/toolkit';
 import { KanbasState } from '../../../../store';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 function QuizEdit() {
     const { courseId, quizId } = useParams();
@@ -299,6 +300,12 @@ function QuizEdit() {
                                     })
                                 });
                             }}/>}
+                            <button className="btn btn-danger btn-sm" onClick={() => {
+                                setEditedQuestion({
+                                    ...editedQuestion,
+                                    answers: editedQuestion.answers.filter((a: any, i: number) => i !== index)
+                                });
+                            }}><FaRegTrashAlt /></button>
                         </li>
                     ))}
                 </ul>
