@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as client from '../../client';
 import { updateQuiz } from '../../reducer';
 import { nanoid } from '@reduxjs/toolkit';
+import { KanbasState } from '../../../../store';
 
 function QuizEdit() {
     const { courseId, quizId } = useParams();
-    const [quiz, setQuiz] = useState<any>({ _id: "" });
+    const quizList = useSelector((state: KanbasState) => state.quizzesReducer.quizzes);
+    const initial = quizList.find((quiz: any) => quiz._id === quizId);
+    const [quiz, setQuiz] = useState<any>({ ...initial, _id: quizId });
     const [activeTab, setActiveTab] = useState("section1");
-    const [questions, setQuestions] = useState<any>([]); // List of questions
+    const [questions, setQuestions] = useState<any>(quiz.questions);
     const defaultMCAnswers = [
         { answer: "Answer 1", correct: false },
         { answer: "Answer 2", correct: false },
@@ -27,12 +30,11 @@ function QuizEdit() {
     const defaultQuestion = {
         _id: "default",
         question: "Question",
-        points: 10,
+        points: 0,
         type: "Multiple Choice",
         answers: defaultMCAnswers,
     };
     const [editedQuestion, setEditedQuestion] = useState<any>(defaultQuestion); // Question being edited
-    //const [question, setQuestion] = useState<any>(defaultQuestion); // New question
     const [points, setPoints] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,6 +42,7 @@ function QuizEdit() {
         client.updateQuiz(quiz)
         .then((status) => {
             dispatch(updateQuiz(quiz));
+            console.log(quiz.questions);
             // Navigate to the Quiz Details page on successful update
             navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`);
         })
@@ -49,14 +52,18 @@ function QuizEdit() {
     };
     const handleAddQuestion = () => {
         const q = { ...defaultQuestion, _id: nanoid() };
-        setQuestions([...questions, q]);
-        
+        setQuestions([q, ...questions]);
+        setQuiz((prevState: any) => ({
+            ...prevState,
+            questions: [q, ...quiz.questions]
+        }));
     };
     const handleDeleteQuestion = (questionId: string) => {
         setQuestions(questions.filter((question: any) => question._id !== questionId));
-        setPoints(
-            questions.reduce((acc: number, question: any) => acc + question.points, 0)
-        );
+        setQuiz((prevState: any) => ({
+            ...prevState,
+            questions: quiz.questions.filter((question: any) => question._id !== questionId)
+        }));
     };
     const handleSaveQuestion = (question: any) => {
         setQuestions(questions.map((q: any) => {
@@ -66,10 +73,28 @@ function QuizEdit() {
                 return q;
             }
         }));
-        setPoints(
-            questions.reduce((acc: number, question: any) => acc + question.points, 0)
-        );
         handleCloseEditMenu();
+    };
+    const handleChangeQType = (type: String) => {
+        if (type === "Multiple Choice") {
+            setEditedQuestion({
+                ...editedQuestion,
+                type: "Multiple Choice",
+                answers: defaultMCAnswers
+            });
+        } else if (type === "True/False") {
+            setEditedQuestion({
+                ...editedQuestion,
+                type: "True/False",
+                answers: defaultTFAnswers
+            });
+        } else if (type === "Fill in the Blank") {
+            setEditedQuestion({
+                ...editedQuestion,
+                type: "Fill in the Blank",
+                answers: defaultFBAnswers
+            });
+        }
     }
     const handleEditQuestion = (question: any) => {
         setEditedQuestion(question);
@@ -78,12 +103,13 @@ function QuizEdit() {
         setEditedQuestion(defaultQuestion);
     };
     useEffect(() => {
-        client.findQuizById(quizId)
-            .then((quiz) => setQuiz(quiz));
         setPoints(
-            questions.reduce((acc: number, question: any) => acc + question.points, 0)
+            questions.reduce((acc: number, question: any) => acc + Number(question.points), 0)
         );
-    }, [quizId, handleAddQuestion]);
+        console.log("Questions", questions);
+        console.log("Quiz Questions", quiz.questions);
+    }, [quizId, questions]);
+    // Update Quiz Details
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const { id, value } = e.target;
         setQuiz((prevState: any) => ({
@@ -198,136 +224,6 @@ function QuizEdit() {
             </ul>
         </div>
     );
-    const multipleChoiceMenu = (
-        <div>
-            <label htmlFor="question">Question</label>
-            <input type="text" id="question" value={editedQuestion.question} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    question: e.target.value
-                });
-            }}/>
-            <label htmlFor="points">Points</label>
-            <input type="number" id="points" value={editedQuestion.points} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    points: e.target.value
-                });
-            }}/>
-            <label htmlFor="type">Type</label>
-            <select id="type" value={editedQuestion.type} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    type: e.target.value
-                });
-            }}>
-                <option value="Multiple Choice">Multiple Choice</option>
-                <option value="True/False">True/False</option>
-                <option value="Fill in the Blank">Fill in the Blank</option>
-            </select>
-            <ul className="list-group list-group-flush">
-                {editedQuestion.answers.map((answer: any, index: number) => (
-                    <li key={index} className="list-group-item">
-                        <input type="text" value={answer.answer} onChange={(e) => {
-                            setEditedQuestion({
-                                ...editedQuestion,
-                                answers: editedQuestion.answers.map((a: any, i: number) => {
-                                    if (i === index) {
-                                        return {
-                                            ...a,
-                                            answer: e.target.value
-                                        };
-                                    } else {
-                                        return a;
-                                    }
-                                })
-                            });
-                        }}/>
-                        <input type="radio" checked={answer.correct} onChange={(e) => {
-                            setEditedQuestion({
-                                ...editedQuestion,
-                                answers: editedQuestion.answers.map((a: any, i: number) => {
-                                    if (i === index) {
-                                        return {
-                                            ...a,
-                                            correct: e.target.checked
-                                        };
-                                    } else {
-                                        return a;
-                                    }
-                                })
-                            });
-                        }}/>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-    const trueFalseMenu = (
-        <div>
-            <label htmlFor="question">Question</label>
-            <input type="text" id="question" value={editedQuestion.question} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    question: e.target.value
-                });
-            }}/>
-            <label htmlFor="points">Points</label>
-            <input type="number" id="points" value={editedQuestion.points} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    points: e.target.value
-                });
-            }}/>
-            <label htmlFor="type">Type</label>
-            <select id="type" value={editedQuestion.type} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    type: e.target.value
-                });
-            }}>
-                <option value="Multiple Choice">Multiple Choice</option>
-                <option value="True/False">True/False</option>
-                <option value="Fill in the Blank">Fill in the Blank</option>
-            </select>
-            <ul className="list-group list-group-flush">
-                {editedQuestion.answers.map((answer: any, index: number) => (
-                    <li key={index} className="list-group-item">
-                        <input type="text" value={answer.answer} onChange={(e) => {
-                            setEditedQuestion({
-                                ...editedQuestion,
-                                answers: editedQuestion.answers.map((a: any, i: number) => {
-                                    if (i === index) {
-                                        return {
-                                            ...a,
-                                            answer: e.target.value
-                                        };
-                                    } else {
-                                        return a;
-                                    }
-                                })
-                            });
-                        }}/>
-                        <input type="radio" checked={answer.correct} onChange={(e) => {
-                            setEditedQuestion({
-                                ...editedQuestion,
-                                answers: editedQuestion.answers.map((a: any, i: number) => {
-                                    if (i === index) {
-                                        return {
-                                            ...a,
-                                            correct: e.target.checked
-                                        };
-                                    } else {
-                                        return a;
-                                    }
-                                })
-                            });
-                        }}/>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
     // Edit Question Menu
     const editedQuestionMenu = (
         <div>
@@ -347,16 +243,11 @@ function QuizEdit() {
             }}/>
             <label htmlFor="type">Type</label>
             <select id="type" value={editedQuestion.type} onChange={(e) => {
-                setEditedQuestion({
-                    ...editedQuestion,
-                    type: e.target.value
-                });
+                handleChangeQType(e.target.value);
             }}>
                 <option value="Multiple Choice">Multiple Choice</option>
                 <option value="True/False">True/False</option>
                 <option value="Fill in the Blank">Fill in the Blank</option>
-                <option value="Short Answer">Short Answer</option>
-                <option value="Matching">Matching</option>
             </select>
             <ul className="list-group list-group-flush">
                 {editedQuestion.answers.map((answer: any, index: number) => (
@@ -376,17 +267,20 @@ function QuizEdit() {
                                 })
                             });
                         }}/>
-                        <input type="checkbox" checked={answer.correct} onChange={(e) => {
+                        <input type="radio" name={`correctAnswer${index}`} checked={answer.correct} onChange={(e) => {
                             setEditedQuestion({
                                 ...editedQuestion,
                                 answers: editedQuestion.answers.map((a: any, i: number) => {
                                     if (i === index) {
                                         return {
                                             ...a,
-                                            correct: e.target.checked
+                                            correct: true
                                         };
                                     } else {
-                                        return a;
+                                        return {
+                                            ...a,
+                                            correct: false
+                                        };
                                     }
                                 })
                             });
@@ -394,6 +288,9 @@ function QuizEdit() {
                     </li>
                 ))}
             </ul>
+            <button className="btn btn-primary btn-sm">
+                Add Answer
+            </button>
         </div>
     );
     // List of Questions
@@ -405,7 +302,7 @@ function QuizEdit() {
             <ul className="list-group list-group-flush">
                 {questions.map((question: any, index: number) => (
                     <li key={index} className="list-group-item">
-                        <h5>{question.question} ({question.type})</h5>
+                        <h5>{question.question} ({question.type}, {question.points} pts)</h5>
                         <ul className="list-group list-group-flush">
                             {question.answers.map((answer: any, index: number) => (
                                 <li key={index} className="list-group-item">
@@ -441,7 +338,10 @@ function QuizEdit() {
         <div>
             <span>
                 <button className="btn btn-info" onClick={handleUpdateQuiz}>Save</button>
-                <button className="btn btn-success">Save & Publish</button>
+                <button className="btn btn-success" onClick={() => {
+                    setQuiz((prevState: any) => ({ ...quiz, published: true }));
+                    handleUpdateQuiz();
+                }}>Save & Publish</button>
                 <button className="btn btn-danger" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`)}>Cancel</button>
             </span>
             <h1>Edit Quiz: {quiz.name}</h1>

@@ -66,9 +66,6 @@ function QuizList() {
                     .filter((quiz) => quiz.course === courseId)
                     .map((quiz, index) => (
                         <li key={index} className="list-group-item" style={quiz.published ? { borderLeft: '5px solid green' } : { }}>
-                            {/*<button className="btn btn-danger" onClick={() => handleDeleteQuiz(quiz._id)} >
-                                Delete
-                    </button>*/}
                             <div style={{ fontSize: '18px' }}>
                                 <FaBook className="me-2" style={ quiz.published ? {color: 'green'} : {} } />
                                 <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`}>
@@ -83,7 +80,13 @@ function QuizList() {
                                     </button>
                                     {showMenu && (
                                         <div className="menu">
-                                            <button className="btn btn-danger" onClick={() => handleDeleteQuiz(quiz._id)}>
+                                            <button className={quiz.published ? "btn btn-outline-danger btn-sm" : "btn btn-outline-success btn-sm"} onClick={() => handleUpdateQuiz({ ...quiz, published: !quiz.published })}>
+                                                {quiz.published ? "Unpublish" : "Publish"}
+                                            </button>
+                                            <button className="btn btn-secondary btn-sm" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/Edit/${quiz._id}`)}>
+                                                Edit
+                                            </button>
+                                            <button className="btn btn-danger btn-sm" onClick={() => handleDeleteQuiz(quiz._id)}>
                                                 Delete
                                             </button>
                                         </div>

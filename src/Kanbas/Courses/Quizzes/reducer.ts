@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { find } from '@reduxjs/toolkit/dist/utils';
 
 type Quiz = {
     _id: string;

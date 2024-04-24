@@ -37,7 +37,7 @@ function QuizDetails() {
                     Preview
                 </button>
             </span>
-            <h1>Quiz Details: {quiz.name}</h1>
+            <h2>Quiz Details: {quiz.name}</h2>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Description: {quiz.description}</li>
                 <li className="list-group-item">Quiz Type: {quiz.type}</li>
