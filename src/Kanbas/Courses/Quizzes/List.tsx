@@ -95,8 +95,8 @@ function QuizList() {
                             </div>
                             <div>
                                 <span>
-                                    <strong>Not available until:</strong> {quiz.availableDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <strong>Due:</strong> {quiz.dueDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong>Not available until:</strong> {quiz.available}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong>Due:</strong> {quiz.due}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     {quiz.points && <>{quiz.points} pts</>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     {quiz.questions && <>{quiz.questions.length} Questions</>}
                                 </span>

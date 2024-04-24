@@ -31,14 +31,21 @@ function PreviewQuiz() {
             <ul className="list-group list-group-flush">
                 {quiz.questions && quiz.questions.map((question: any, index: number) => (
                     <li key={index} className="list-group-item">
-                        <h5>{question.question}</h5>
-                        <ul className="list-group list-group-flush">
-                            {question.answers.map((answer: any, index: number) => (
-                                <li key={index} className="list-group-item">
-                                    {answer.correct ? <strong>{answer.answer}</strong> : answer.answer}
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="card">
+                            <div className="card-header">
+                                <h3>Question {index + 1}</h3>
+                            </div>
+                            <div className="card-body">
+                                <h5>{question.question}</h5>
+                                <ul className="list-group list-group-flush">
+                                    {question.answers.map((answer: any, index: number) => (
+                                        <li key={index} className="list-group-item">
+                                            {answer.correct ? <strong>{answer.answer}</strong> : answer.answer}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
